@@ -2,9 +2,11 @@ package ma.youcode.clicktrack.service;
 
 import ma.youcode.clicktrack.model.Link;
 import ma.youcode.clicktrack.repository.LinkRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class LinkServiceImp implements LinkService {
     private final LinkRepository linkRepository;
 

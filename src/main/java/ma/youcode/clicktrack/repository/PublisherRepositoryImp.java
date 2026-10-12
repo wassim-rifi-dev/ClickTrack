@@ -22,6 +22,9 @@ public class PublisherRepositoryImp implements PublisherRepository {
 
     @Override
     public Publisher findById(Long id) {
-        return null;
+        return publishers.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }
