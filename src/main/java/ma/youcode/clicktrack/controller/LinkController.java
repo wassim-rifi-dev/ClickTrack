@@ -1,6 +1,7 @@
 package ma.youcode.clicktrack.controller;
 
-import ma.youcode.clicktrack.dto.CreateLinkDTO;
+import ma.youcode.clicktrack.dto.request.CreateLinkRequestDTO;
+import ma.youcode.clicktrack.dto.responce.CreateLinkResponceDTO;
 import ma.youcode.clicktrack.model.Link;
 import ma.youcode.clicktrack.model.Publisher;
 import ma.youcode.clicktrack.service.LinkService;
@@ -27,7 +28,7 @@ public class LinkController {
     private final AtomicLong linkId = new AtomicLong(0);
 
     @PostMapping("/{id}/liens")
-    public ResponseEntity<?> createLink(@RequestBody CreateLinkDTO createLinkDTO , @PathVariable("id") Long publisherId) {
+    public ResponseEntity<?> createLink(@RequestBody CreateLinkRequestDTO createLinkDTO , @PathVariable("id") Long publisherId) {
         if (createLinkDTO == null) {
             return ResponseEntity.badRequest()
                     .body(Map.of("message", "Donner les info de lien created"));
@@ -60,7 +61,16 @@ public class LinkController {
                     .body(Map.of("message", "Erreur lors de la création du lien"));
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedLink);
+        CreateLinkResponceDTO responceDTO = new CreateLinkResponceDTO(
+                savedLink.getId(),
+                savedLink.getOffre(),
+                savedLink.getUrlDestination(),
+                savedLink.getClicks(),
+                savedLink.getPublisher().getFullName(),
+                "/t/" + savedLink.getId()
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(responceDTO);
 
     }
 }
