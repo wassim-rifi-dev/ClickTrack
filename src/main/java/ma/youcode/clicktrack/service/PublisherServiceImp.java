@@ -1,10 +1,19 @@
 package ma.youcode.clicktrack.service;
 
 import ma.youcode.clicktrack.model.Publisher;
+import ma.youcode.clicktrack.repository.PublisherRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PublisherServiceImp implements PublisherService {
+    private final PublisherRepository publisherRepository;
+
+    public PublisherServiceImp(PublisherRepository publisherRepository) {
+        this.publisherRepository = publisherRepository;
+    }
+
     @Override
     public Publisher create(Publisher publisher) {
         return null;
@@ -12,7 +21,7 @@ public class PublisherServiceImp implements PublisherService {
 
     @Override
     public List<Publisher> getAll() {
-        return List.of();
+        return publisherRepository.findAll();
     }
 
     @Override
