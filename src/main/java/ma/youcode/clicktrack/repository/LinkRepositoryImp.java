@@ -1,10 +1,12 @@
 package ma.youcode.clicktrack.repository;
 
 import ma.youcode.clicktrack.model.Link;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class LinkRepositoryImp implements LinkRepository {
     private final List<Link> links = new ArrayList<>();
 
