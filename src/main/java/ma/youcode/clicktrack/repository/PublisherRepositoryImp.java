@@ -11,8 +11,8 @@ public class PublisherRepositoryImp implements PublisherRepository {
     private final List<Publisher> publishers = new ArrayList<>();
 
     @Override
-    public Publisher save(Publisher publisher) {
-        return null;
+    public boolean save(Publisher publisher) {
+        return publishers.add(publisher);
     }
 
     @Override
@@ -22,6 +22,9 @@ public class PublisherRepositoryImp implements PublisherRepository {
 
     @Override
     public Publisher findById(Long id) {
-        return null;
+        return publishers.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }

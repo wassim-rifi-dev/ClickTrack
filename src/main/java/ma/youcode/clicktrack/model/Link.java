@@ -1,7 +1,7 @@
 package ma.youcode.clicktrack.model;
 
 public class Link {
-    private int id;
+    private Long id;
     private String offre;
     private String urlDestination;
     private int clicks;
@@ -14,7 +14,7 @@ public class Link {
         this.publisher = publisher;
     }
 
-    public Link(int id, String offre, String urlDestination, int clicks, Publisher publisher) {
+    public Link(Long id, String offre, String urlDestination, int clicks, Publisher publisher) {
         this.id = id;
         this.offre = offre;
         this.urlDestination = urlDestination;
@@ -22,11 +22,11 @@ public class Link {
         this.publisher = publisher;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

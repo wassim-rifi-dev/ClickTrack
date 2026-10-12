@@ -3,7 +3,7 @@ package ma.youcode.clicktrack.repository;
 import java.util.List;
 
 public interface Repository<T> {
-    T save(T t);
+    boolean save(T t);
 
     List<T> findAll();
 

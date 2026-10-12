@@ -1,10 +1,19 @@
 package ma.youcode.clicktrack.service;
 
 import ma.youcode.clicktrack.model.Link;
+import ma.youcode.clicktrack.repository.LinkRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class LinkServiceImp implements LinkService{
+@Service
+public class LinkServiceImp implements LinkService {
+    private final LinkRepository linkRepository;
+
+    public LinkServiceImp(LinkRepository linkRepository) {
+        this.linkRepository = linkRepository;
+    }
+
     @Override
     public List<Link> getByPublisherId(Long publisherId) {
         return List.of();
@@ -17,7 +26,13 @@ public class LinkServiceImp implements LinkService{
 
     @Override
     public Link create(Link link) {
-        return null;
+        boolean isCreated = linkRepository.save(link);
+
+        if (!isCreated) {
+            return null;
+        }
+
+        return link;
     }
 
     @Override

@@ -26,6 +26,6 @@ public class PublisherServiceImp implements PublisherService {
 
     @Override
     public Publisher getById(Long id) {
-        return null;
+        return publisherRepository.findById(id);
     }
 }
