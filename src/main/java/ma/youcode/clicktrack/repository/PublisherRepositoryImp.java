@@ -11,8 +11,8 @@ public class PublisherRepositoryImp implements PublisherRepository {
     private final List<Publisher> publishers = new ArrayList<>();
 
     @Override
-    public void save(Publisher publisher) {
-
+    public Publisher save(Publisher publisher) {
+        return null;
     }
 
     @Override

@@ -19,8 +19,8 @@ public class LinkRepositoryImp implements LinkRepository {
     }
 
     @Override
-    public void save(Link link) {
-
+    public Link save(Link link) {
+        return null;
     }
 
     @Override
