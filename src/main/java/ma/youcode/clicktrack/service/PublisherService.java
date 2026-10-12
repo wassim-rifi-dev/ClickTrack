@@ -1,4 +1,6 @@
 package ma.youcode.clicktrack.service;
 
-public interface PublisherService extends Service{
+import ma.youcode.clicktrack.model.Publisher;
+
+public interface PublisherService extends Service<Publisher> {
 }
