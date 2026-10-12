@@ -63,4 +63,8 @@ public class Publisher {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public String getFullName() {
+        return first_name + " " + last_name;
+    }
 }
