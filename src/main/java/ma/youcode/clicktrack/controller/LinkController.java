@@ -2,6 +2,7 @@ package ma.youcode.clicktrack.controller;
 
 import ma.youcode.clicktrack.dto.request.CreateLinkRequestDTO;
 import ma.youcode.clicktrack.dto.responce.CreateLinkResponceDTO;
+import ma.youcode.clicktrack.dto.responce.PublisherLinkResponceDTO;
 import ma.youcode.clicktrack.model.Link;
 import ma.youcode.clicktrack.model.Publisher;
 import ma.youcode.clicktrack.service.LinkService;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -72,5 +74,25 @@ public class LinkController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responceDTO);
 
+    }
+
+    @GetMapping("/{id}/liens")
+    public ResponseEntity<?> getPublisherLink(@PathVariable("id") Long publisherId) {
+        Publisher publisher = publisherService.getById(publisherId);
+
+        if (publisher == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("message", "Publisher introuvable avec l'id " + publisherId));
+        }
+
+        List<PublisherLinkResponceDTO> publisherLinks = linkService.getByPublisherId(publisher.getId());
+
+        if (publisherLinks.isEmpty()) {
+            return ResponseEntity.ok(
+                    Map.of("message", "Aucun lien trouvé pour ce publisher")
+            );
+        }
+
+        return ResponseEntity.ok(publisherLinks);
     }
 }

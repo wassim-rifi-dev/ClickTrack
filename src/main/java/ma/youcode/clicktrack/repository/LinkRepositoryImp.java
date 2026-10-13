@@ -10,7 +10,9 @@ public class LinkRepositoryImp implements LinkRepository {
 
     @Override
     public List<Link> findByPublisherId(Long publisherId) {
-        return List.of();
+        return links.stream()
+                .filter(link -> link.getPublisher().getId() == publisherId)
+                .toList();
     }
 
     @Override
