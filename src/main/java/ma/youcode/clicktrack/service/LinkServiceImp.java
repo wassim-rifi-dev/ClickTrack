@@ -32,6 +32,12 @@ public class LinkServiceImp implements LinkService {
     }
 
     @Override
+    public List<Link> getPublisherOffer(Long publisherId) {
+        List<Link> links = linkRepository.findByPublisherId(publisherId);
+        return List.of();
+    }
+
+    @Override
     public void addClick(Long id) {
 
     }
