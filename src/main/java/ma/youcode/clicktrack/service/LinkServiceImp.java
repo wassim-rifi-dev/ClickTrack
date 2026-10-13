@@ -1,9 +1,11 @@
 package ma.youcode.clicktrack.service;
 
+import ma.youcode.clicktrack.dto.responce.PublisherLinkResponceDTO;
 import ma.youcode.clicktrack.model.Link;
 import ma.youcode.clicktrack.repository.LinkRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LinkServiceImp implements LinkService {
     private final LinkRepository linkRepository;
@@ -13,8 +15,20 @@ public class LinkServiceImp implements LinkService {
     }
 
     @Override
-    public List<Link> getByPublisherId(Long publisherId) {
-        return List.of();
+    public List<PublisherLinkResponceDTO> getByPublisherId(Long publisherId) {
+        List<Link> links = linkRepository.findByPublisherId(publisherId);
+
+        List<PublisherLinkResponceDTO> publisherLinks = links.stream()
+                .collect(Collectors.groupingBy(Link::getOffre))
+                .entrySet().stream()
+                .map(entry -> new PublisherLinkResponceDTO(
+                        entry.getKey(),
+                        entry.getValue().size(),
+                        entry.getValue().stream().mapToInt(Link::getClicks).sum()
+                ))
+                .toList();
+
+        return publisherLinks;
     }
 
     @Override
