@@ -16,8 +16,10 @@ public class LinkRepositoryImp implements LinkRepository {
     }
 
     @Override
-    public void incrementClicks(Long id) {
+    public Link incrementClicks(Link link) {
+        link.setClicks(link.getClicks() + 1);
 
+        return link;
     }
 
     @Override
@@ -32,6 +34,9 @@ public class LinkRepositoryImp implements LinkRepository {
 
     @Override
     public Link findById(Long id) {
-        return null;
+        return links.stream()
+                .filter(link -> link.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }

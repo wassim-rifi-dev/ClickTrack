@@ -32,8 +32,8 @@ public class LinkServiceImp implements LinkService {
     }
 
     @Override
-    public void addClick(Long id) {
-
+    public Link addClick(Link link) {
+        return linkRepository.incrementClicks(link);
     }
 
     @Override
@@ -54,6 +54,6 @@ public class LinkServiceImp implements LinkService {
 
     @Override
     public Link getById(Long id) {
-        return null;
+        return linkRepository.findById(id);
     }
 }
