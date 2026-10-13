@@ -3,15 +3,12 @@ package ma.youcode.clicktrack.config;
 import ma.youcode.clicktrack.model.Publisher;
 import ma.youcode.clicktrack.model.enums.Category;
 import ma.youcode.clicktrack.service.PublisherService;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
 public class DataInitilizerConfig {
     private final PublisherService publisherService;
 
     public DataInitilizerConfig(PublisherService publisherService) {
         this.publisherService = publisherService;
-        init();
     }
 
     public void init() {
