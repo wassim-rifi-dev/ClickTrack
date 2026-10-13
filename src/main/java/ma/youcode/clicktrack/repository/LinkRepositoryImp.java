@@ -16,8 +16,10 @@ public class LinkRepositoryImp implements LinkRepository {
     }
 
     @Override
-    public void incrementClicks(Long id) {
+    public Link incrementClicks(Link link) {
+        link.setClicks(link.getClicks() + 1);
 
+        return link;
     }
 
     @Override

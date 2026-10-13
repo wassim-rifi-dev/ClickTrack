@@ -7,5 +7,5 @@ import java.util.List;
 public interface LinkRepository extends Repository<Link> {
     List<Link> findByPublisherId(Long publisherId);
 
-    void incrementClicks(Long id);
+    Link incrementClicks(Link link);
 }
