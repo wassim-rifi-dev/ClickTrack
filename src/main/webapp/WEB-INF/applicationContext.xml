@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Repositories -->
+    <bean id="publisherRepository"
+          class="ma.youcode.clicktrack.repository.PublisherRepositoryImp"/>
+
+    <bean id="linkRepository"
+          class="ma.youcode.clicktrack.repository.LinkRepositoryImp"/>
+
+    <!-- Services -->
+    <bean id="publisherService"
+          class="ma.youcode.clicktrack.service.PublisherServiceImp">
+        <constructor-arg ref="publisherRepository"/>
+    </bean>
+
+    <bean id="linkService"
+          class="ma.youcode.clicktrack.service.LinkServiceImp">
+        <constructor-arg ref="linkRepository"/>
+    </bean>
+
+    <!-- Controllers -->
+    <bean id="publisherController"
+          class="ma.youcode.clicktrack.controller.PublisherController">
+        <constructor-arg ref="publisherService"/>
+    </bean>
+
+    <bean id="linkController"
+          class="ma.youcode.clicktrack.controller.LinkController">
+        <constructor-arg ref="linkService"/>
+        <constructor-arg ref="publisherService"/>
+    </bean>
+
+    <!-- Données initiales -->
+    <bean id="dataInitializer"
+          class="ma.youcode.clicktrack.config.DataInitilizerConfig"
+          init-method="init">
+        <constructor-arg ref="publisherService"/>
+    </bean>
+
+</beans>

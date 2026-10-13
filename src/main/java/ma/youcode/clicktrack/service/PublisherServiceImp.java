@@ -2,11 +2,9 @@ package ma.youcode.clicktrack.service;
 
 import ma.youcode.clicktrack.model.Publisher;
 import ma.youcode.clicktrack.repository.PublisherRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public class PublisherServiceImp implements PublisherService {
     private final PublisherRepository publisherRepository;
 
