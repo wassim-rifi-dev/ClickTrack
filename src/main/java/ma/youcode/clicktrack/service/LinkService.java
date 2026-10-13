@@ -8,5 +8,5 @@ import java.util.List;
 public interface LinkService extends Service<Link> {
     List<PublisherLinkResponceDTO> getByPublisherId(Long publisherId);
 
-    void addClick(Long id);
+    Link addClick(Link link);
 }
