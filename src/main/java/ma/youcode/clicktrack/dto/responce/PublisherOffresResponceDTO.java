@@ -2,7 +2,7 @@ package ma.youcode.clicktrack.dto.responce;
 
 import java.util.List;
 
-public record PublisherOffresDTO(
-        Long publisherId,
+public record PublisherOffresResponceDTO(
+        String publisher,
         List<OffreStatsDTO> offres
 ) { }

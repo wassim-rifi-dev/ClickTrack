@@ -1,7 +1,7 @@
 package ma.youcode.clicktrack.service;
 
 import ma.youcode.clicktrack.dto.responce.OffreStatsDTO;
-import ma.youcode.clicktrack.dto.responce.PublisherOffresDTO;
+import ma.youcode.clicktrack.dto.responce.PublisherOffresResponceDTO;
 import ma.youcode.clicktrack.model.Link;
 import ma.youcode.clicktrack.model.Publisher;
 import ma.youcode.clicktrack.repository.LinkRepository;
@@ -38,8 +38,10 @@ public class PublisherServiceImp implements PublisherService {
     }
 
     @Override
-    public PublisherOffresDTO getPublisherOffer(Long publisherId) {
+    public PublisherOffresResponceDTO getPublisherOffer(Long publisherId) {
         List<Link> links = linkRepository.findByPublisherId(publisherId);
+
+        Publisher publisher = publisherRepository.findById(publisherId);
 
         Map<String, Integer> clicksParOffre = links.stream()
                 .collect(Collectors.groupingBy(
@@ -52,6 +54,6 @@ public class PublisherServiceImp implements PublisherService {
                 .map(e -> new OffreStatsDTO(e.getKey(), e.getValue()))
                 .toList();
 
-        return new PublisherOffresDTO(publisherId, offres);
+        return new PublisherOffresResponceDTO(publisher.getFullName(), offres);
     }
 }

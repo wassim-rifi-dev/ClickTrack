@@ -1,6 +1,6 @@
 package ma.youcode.clicktrack.controller;
 
-import ma.youcode.clicktrack.dto.responce.PublisherOffresDTO;
+import ma.youcode.clicktrack.dto.responce.PublisherOffresResponceDTO;
 import ma.youcode.clicktrack.model.Publisher;
 import ma.youcode.clicktrack.service.PublisherService;
 import org.springframework.http.HttpStatus;
@@ -45,7 +45,7 @@ public class PublisherController {
                     .body(Map.of("message", "Publisher introuvable avec l'id " + publisherId));
         }
 
-        PublisherOffresDTO response = publisherService.getPublisherOffer(publisher.getId());
+        PublisherOffresResponceDTO response = publisherService.getPublisherOffer(publisher.getId());
 
         return ResponseEntity.ok(response);
     }
