@@ -16,6 +16,7 @@
     <bean id="publisherService"
           class="ma.youcode.clicktrack.service.PublisherServiceImp">
         <constructor-arg ref="publisherRepository"/>
+        <constructor-arg ref="linkRepository"/>
     </bean>
 
     <bean id="linkService"
