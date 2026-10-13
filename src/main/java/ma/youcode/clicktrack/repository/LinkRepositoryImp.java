@@ -34,6 +34,9 @@ public class LinkRepositoryImp implements LinkRepository {
 
     @Override
     public Link findById(Long id) {
-        return null;
+        return links.stream()
+                .filter(link -> link.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }

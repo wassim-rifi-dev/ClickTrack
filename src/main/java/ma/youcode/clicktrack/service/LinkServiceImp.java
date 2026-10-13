@@ -54,6 +54,6 @@ public class LinkServiceImp implements LinkService {
 
     @Override
     public Link getById(Long id) {
-        return null;
+        return linkRepository.findById(id);
     }
 }
