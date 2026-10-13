@@ -1,14 +1,10 @@
 package ma.youcode.clicktrack.service;
 
-import ma.youcode.clicktrack.dto.responce.OffreStatsDTO;
 import ma.youcode.clicktrack.dto.responce.PublisherLinkResponceDTO;
-import ma.youcode.clicktrack.dto.responce.PublisherOffresDTO;
 import ma.youcode.clicktrack.model.Link;
 import ma.youcode.clicktrack.repository.LinkRepository;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LinkServiceImp implements LinkService {
@@ -33,24 +29,6 @@ public class LinkServiceImp implements LinkService {
                 .toList();
 
         return publisherLinks;
-    }
-
-    @Override
-    public PublisherOffresDTO getPublisherOffer(Long publisherId) {
-        List<Link> links = linkRepository.findByPublisherId(publisherId);
-
-        Map<String, Integer> clicksParOffre = links.stream()
-                .collect(Collectors.groupingBy(
-                        link -> link.getOffre(),
-                        LinkedHashMap::new,
-                        Collectors.summingInt(Link::getClicks)
-                ));
-
-        List<OffreStatsDTO> offres = clicksParOffre.entrySet().stream()
-                .map(e -> new OffreStatsDTO(e.getKey(), e.getValue()))
-                .toList();
-
-        return new PublisherOffresDTO(publisherId, offres);
     }
 
     @Override

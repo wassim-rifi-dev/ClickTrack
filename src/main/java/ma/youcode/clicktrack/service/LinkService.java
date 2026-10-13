@@ -11,7 +11,5 @@ import java.util.Map;
 public interface LinkService extends Service<Link> {
     List<PublisherLinkResponceDTO> getByPublisherId(Long publisherId);
 
-    PublisherOffresDTO getPublisherOffer(Long publisherId);
-
     void addClick(Long id);
 }
