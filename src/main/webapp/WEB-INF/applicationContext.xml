@@ -36,6 +36,10 @@
         <constructor-arg ref="publisherService"/>
     </bean>
 
+    <bean id="clickController" class="ma.youcode.clicktrack.controller.ClickController" >
+        <constructor-arg ref="linkService" />
+    </bean>
+
     <!-- Données initiales -->
     <bean id="dataInitializer"
           class="ma.youcode.clicktrack.config.DataInitilizerConfig"
